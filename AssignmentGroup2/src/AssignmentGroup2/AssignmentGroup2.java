@@ -17,10 +17,12 @@ public class AssignmentGroup2 {
 		service = sc.nextInt();
 		
 		//aqilah
-		if (service == 1) {
+		if (service == 3) {
+			print4();
 			print1();
 			print2();
 			print3();
+			
 		}
 		
 		//adam
@@ -31,13 +33,18 @@ public class AssignmentGroup2 {
 		}
 		
 		//izannuddin
-		else if (service == 3){
-			printService3();
+		else if (service == 1){
+			String[]arr= new String [] {"welcome", "to", "izans", "beauty", "shop"};     
+			 printArray(arr);
+			 System.out.println();
+				printInfo();
+				printitems();
+				printtotal();
 		}
 		
 		//saifuddin
 		else if (service == 4){
-			printInfo();
+			printInformations();
 			printShop();
 			printQuestionandReceipt();
 		}
@@ -45,7 +52,7 @@ public class AssignmentGroup2 {
 		//afiza
 		else if (service == 5){
 			printInformation();
-			printitems();
+			printItems();
 			printcalculate();
 		}
 				
@@ -68,7 +75,7 @@ public class AssignmentGroup2 {
 		System.out.println("What is your gender? ");
 		char gender = sc.next().charAt(0);
 		System.out.println("What is your phone number? ");
-		int phone = sc.nextInt();
+		String phone = sc.next();
 		System.out.println(" ");
 		
 		System.out.println("\nName: " + name);
@@ -76,7 +83,6 @@ public class AssignmentGroup2 {
 		System.out.println("Ic number: " + ic);
 		System.out.println("Gender: " + gender);
 		System.out.println("HP: " + phone);
-		sc.close();
 	}
 	
 	public static void print2() {
@@ -164,11 +170,11 @@ public class AssignmentGroup2 {
 		System.out.println("\nCUTIE SHOP!");
 		System.out.println("\t\t\t\s\s\s\sQuantity\tprice");
 		System.out.println("1.\t"+ sell[0] +  ":\t\t"+q1+"\t" + price1);
-		System.out.println("2.\t"+ sell[1] +  ":\t\t"+q2+"\t" + price2);
+		System.out.println("2.\t"+ sell[1] +  ":\t"+q2+"\t" + price2);
 		System.out.println("3.\t"+ sell[2] +  ":\t\t"+q3+"\t" + price3);
 		System.out.println("4.\t"+ sell[3] +  ":\t\t"+q4+"\t" + price4);
 		System.out.println("5.\t"+ sell[4] +  ":\t\t"+q5+"\t" + price5);
-		System.out.println("6.\t"+ sell[5] +  ":\t\t"+q6+"\t" + price6);
+		System.out.println("6.\t"+ sell[5] +  ":\t"+q6+"\t" + price6);
 		
 	
 		
@@ -190,7 +196,23 @@ public class AssignmentGroup2 {
 			System.out.print("=");
 		}
 		System.out.println(" ");
-		sc.close();
+	}
+	
+	public static void print4() {
+		Scanner sc1 =new Scanner(System.in);
+		int customers=0;
+		String name;
+			
+		System.out.println("How many customer?");
+		customers = sc1.nextInt();
+		System.out.print("WELCOME TO CUTIE SHOP!!");
+		if (customers>5) {
+			System.out.print(" We hope you enjoy ");
+			String[] names = new String[customers];
+			for (int i1=0; i1<names.length; i1++) {
+				System.out.print("HELLO!! " +names[i1]);
+			}
+		}
 	}//aqilah
 	
 	
@@ -218,14 +240,14 @@ public class AssignmentGroup2 {
 			name = sc.next();
 			System.out.println("Hello, " +name);
 		}
-		sc.close();
+		
 	}
 	
 	public static void printProcess() {
 		DecimalFormat df = new DecimalFormat("0.00");
 		Scanner sc = new Scanner(System.in);
 		
-		double pricetotal=0, discount=0, totalprice=0, totalpricelucky=0;
+		double pricetotal=0, discount=0, totalprice=0, totalpricelucky=0, discountpricelucky=0;
 		int size1=0, id=1;
 		
 		do {
@@ -332,12 +354,6 @@ public class AssignmentGroup2 {
 				System.out.println("Thank you. Please come again.");
 			}
 			
-			
-			if (pricetotal>=450) {
-				discount = pricetotal*0.15;
-				totalprice = pricetotal-discount;
-			}
-			
 			System.out.println("\n");
 			System.out.println("Can you give me your nickname and phone number?");
 			System.out.print("Nickname: ");
@@ -352,13 +368,29 @@ public class AssignmentGroup2 {
 			System.out.println("\t\tName						: " +nickname);
 			System.out.println("\t\tPhone number					: " +phone);
 			System.out.println("\t\tTotal price					: " + df.format(pricetotal));
-			System.out.println("\t\tDiscount					: " + df.format(discount));
-			if (id == 2) {
-				System.out.println("\t\tYou are lucky customer. You'll receive 15% discount.");
-				totalpricelucky = totalprice-((15/100)*totalprice);
-				System.out.println("\t\tTotal price after discount		: " + df.format(totalpricelucky));
+			if (id == 1) {
+				System.out.println("\t\tYou are lucky customer. You'll receive 20% discount.");
+				discountpricelucky = pricetotal*0.2;
+				totalpricelucky = pricetotal-discountpricelucky;
+				if (totalpricelucky>=450) {
+					discount = totalpricelucky*0.15;
+					totalprice = totalpricelucky-discount;
+					System.out.println("\t\tTotal price after discount			: " + df.format(totalprice));
+				}
+				else {
+					System.out.println("\t\tTotal price after discount			: " + df.format(totalpricelucky));
+				}
 			}
-			System.out.println("\t\tTotal price after discount			: " + df.format(totalprice));
+			else {
+				if (pricetotal>=450) {
+				discount = pricetotal*0.15;
+				totalprice = pricetotal-discount;
+				System.out.println("\t\tTotal price after discount			: " + df.format(totalprice));
+				}
+				else {
+					System.out.println("\t\tTotal price after discount			: " + df.format(pricetotal));
+				}
+			}
 			System.out.println("\t\t\t\tTHANK YOU. PLEASE COME AGAIN");
 			System.out.println("\t\t************************************************************");
 			System.out.println("\n");
@@ -370,139 +402,142 @@ public class AssignmentGroup2 {
 
 	
 	//izannuddin
-	public static void printService3() {
-		Scanner scan = new Scanner(System.in);
-	      
-	      char order = 'Y';
-	      int makeup;
-	      int id;
-	      int fhone;
-	      int buy = 0;
-	      double price = 0;
-	      double amount=0;
-	      double totalprice=0;
-	      double balance=0;
-	      double lipstick, blusher, foundation,eyeliner, maskara;
-	      double total1 = 0, total2 = 0, total3 = 0, total4 = 0, total5 =0;
+	public static void printArray(String[] a) {
+		for(int i=0; i<a.length; i++) {
+			System.out.print(a[i]+ " ");
+		}
+	}
 
-	      System.out.print("Enter your name: ");
-	      String myName = scan.nextLine();
-	      System.out.print("Enter your ID: ");
-	      id = scan.nextInt();
-
-	      System.out.print("Enter your number fhone: ");
-	      fhone = scan.nextInt();
-	      
-	      int t=1;
-			do {
-				if (t>0)
-					System.out.print("*");
-				t++;
-			} 
-			while(t<50);
-	      
-	      do {
-	      System.out.println("\nWELCOME TO Izans beauty");
-	      System.out.print("1\tLipstick\t");
-	      System.out.print("RM");
-	      lipstick = scan.nextDouble();
-	      
-
-	      System.out.print("2\tBlusher\t\t");
-	      System.out.print("RM");
-	      blusher = scan.nextDouble();
-	      
-	     
-
-	      System.out.print("3\tFoundation\t\t\t");
-	      System.out.print("RM");
-	      foundation = scan.nextDouble();
-	      
-	      
-	      System.out.print("4\tEyeliner\t\t\t");
-	      System.out.print("RM");
-	      eyeliner = scan.nextDouble();
-	      
-	      
-	      System.out.print("5\tMaskara\t\t\t");
-	      System.out.print("RM");
-	      maskara = scan.nextDouble();
-	      
-
-	      System.out.print("\nWhich mackup? ");
-	      makeup = scan.nextInt();
-
-	      System.out.print("How many you want? ");
-	      buy = scan.nextInt();
-
-	      {
-	      if (makeup == 1)
-	      System.out.print("\nCurrent total price: RM" + total1); 
-	     
-	      else if (makeup == 2)
-	      System.out.print("\nCurrent total price: RM" + total2);
-	      else if (makeup == 3)
-	      System.out.print("\nCurrent total price: RM" + total3);
-	      else if (makeup == 4)
-		      System.out.print("\nCurrent total price: RM" + total4);
-	      else if (makeup == 5)
-		      System.out.print("\nCurrent total price: RM" + total5);
-	      
-	      else
-	      System.out.print("\nInvalid mackup option");
-	      }
-
-	      switch(makeup) {
-	      case 1: price = lipstick * buy;
-	      break;
-	      case 2: total2 = blusher * buy;
-	      break;
-	      case 3: total3 = foundation * buy;
-	      break;
-	      case 4: total4 = eyeliner * buy;
-	      break;
-	      case 5: total5 = maskara * buy;
-	      break;
-	      default: System.out.println("The number is invalid");
-	      }
-	    
-
-	      System.out.print("\nDo you want to add your order? (Y/N): ");
-	      order = scan.next().charAt(0);
-	      
-	     
-	      } 
-	      while(order == 'Y'); 
-
-	      System.out.println("\nBILL");
-
-	      int j=1;
-			do {
-				if (j>0)
-					System.out.print("*");
-				j++;
-			} 
-			while(j<50);
-	      
-
-	      totalprice = total1 + total2 + total3 + total4 +total5;
-	      System.out.print("Total price for your order: RM" + totalprice);
-
-	      System.out.print("\nEnter a amount: RM");
-	      amount = scan.nextDouble();
-
-	      balance = amount - totalprice;
-
-	      System.out.print("\nBalance: RM" + balance);
-	      
-	     
-	      System.out.println("\nThank you. Please come again");
+			public static void printInfo() {
+			Scanner sc = new Scanner(System.in);	
 		
+			
+			System.out.println("Please tell me about yourself.");
+			System.out.print("What is your name?");
+			String name = sc.next();
+			System.out.print("How old are you? ");
+			int age = sc.nextInt();
+			System.out.print("What is your id number?");
+			int id = sc.nextInt();
+			System.out.print("What is your gender?");
+			char gender = sc.next().charAt(0);
+			System.out.print("What is your phone number?");
+			int phone = sc.nextInt();
+			
+			System.out.println("\nName: " + name);
+			System.out.println("Age: " + age);
+			System.out.println("Id number: " + id);
+			System.out.println("Gender: " + gender);
+			System.out.println("HP: " + phone);
+			System.out.println();
+			}
+			
+			public static void printitems() {	
+			
+			System.out.println("TODAY IS A SPECIAL DAY!!!!!!!");
+			System.out.println();
+			
+			System.out.println("product makeup");
+			System.out.println();
+			String[] makeup = {"lipstick","mascara","eyeliner","foundation","blusher"};
+			
+			System.out.println(makeup[0] + " RM20");
+			System.out.println(makeup[1] + " RM25");
+			System.out.println(makeup[2] + " RM15");
+			System.out.println(makeup[3] + " RM30");
+			System.out.println(makeup[4] + " RM10");
+			System.out.println();
+			}
+			
+			
+			
+			public static void printtotal() { 
+				
+				
+				Scanner in = new Scanner(System.in);
+				System.out.println("****************************************************");
+				int q1= 0, q2=0, q3=0, q4=0, q5=0;
+				int item1=0,item2=0,item3=0,item4=0,item5=0;
+				
+				String[] makeup = {"lipstick","mascara","eyeliner","foundation","blusher"};
+			
+				
+				int lipstick=20;
+				int mascara=25;
+				int eyeliner=15;
+				int foundation=30;
+				int blusher=10;
+				
+				
+				
+				System.out.println("HOW MANY YOU WANT?");
+				System.out.println();
+				
+				System.out.println("quantity product you want: ");
+				System.out.print("->"+makeup[0]);
+				q1=in.nextInt();
+				item1 = (lipstick*q1);
+				System.out.println("\tlipstick :"+ "RM "+item1);
+				System.out.println();
+				
+				System.out.println("quantity product you want: ");
+				System.out.print("->"+makeup[1]);
+				q2=in.nextInt();
+				item2 = (mascara*q2);
+				System.out.println("\tmascara :"+ "RM "+item2);
+				System.out.println();
+				
+				System.out.println("quantity product you want: ");
+				System.out.print("->"+makeup[2]);
+				q3=in.nextInt();
+				item3 = (eyeliner*q3);
+				System.out.println("\teyeliner :"+ "RM "+item3);
+				System.out.println();
+				
+				System.out.println("quantity product you want: ");
+				System.out.print("->"+makeup[3]);
+				q4=in.nextInt();
+				item4 = (foundation*q4);
+				System.out.println("\tfoundation :"+ "RM "+item4);
+				System.out.println();
+				
+				
+				System.out.println("quantity product you want: ");
+				System.out.print("->"+ makeup[4]);
+				q5=in.nextInt();
+				item5 = (blusher*q5);
+				System.out.println("\tblusher :"+ "RM "+item5);
+				System.out.println();
+				
+			       int i=1;
+					do {
+						if (i>0)
+							System.out.print("*");
+						i++;
+					} 
+					while(i<60);
+
+				System.out.println();
+				double total = (item1+item2+item3+item4+item5);
+				
+				
+				if (total >= 100) {
+					double discount = total*0.3;
+					double newtotal = total-discount;
+					System.out.println("Total price after discount 30% : RM"+ newtotal);
+				}
+				else {
+					System.out.println("Total price : RM"+ total);
+				}
+				
+				
+				System.out.println("\nThank you. Please come again");
+			     
 	}//izannuddin
 	
 	
 	//saifuddin
-	public static void printInfo() {
+	public static void printInformations() {
 		Scanner sc = new Scanner(System.in);
 					
 		int customers = 0;
@@ -546,7 +581,7 @@ public class AssignmentGroup2 {
 			System.out.println("HP: " + phone);
 			System.out.println("Birthday: " + day +" "+ month +" "+ year);	
 		}
-	sc.close();								
+								
 	}
 
 	public static void printShop() {
@@ -673,32 +708,37 @@ public class AssignmentGroup2 {
 	//afiza
 	public static void printInformation() {
 		Scanner in = new Scanner(System.in);	
-			
-		String[][] name = {{"Mr","Mrs","Miss"},
-							{"Nur","Afiza"}
-		};
-		System.out.println();
-		System.out.println("_______");
-		System.out.println(name [0][2]+ " " + name [1][0]);
+		int customers=0;	
+		String name;
 		
-		System.out.print("NRIC: ");
-		int nric = in.nextInt();
-		
-		System.out.print("Gender: ");
-		String gender = in.next();
-		
-		System.out.print("Age: ");
-		int age = in.nextInt();
-		
-		System.out.print("Birthday: ");
-		String birthday = in.next();
-		
-		System.out.print("Home Address: ");
-		String homeaddress = in.next();
-		
+		System.out.print("How many customer?");
+		customers = in.nextInt();
+		if(customers>1) {
+			String[] name1 = new String[customers];
+			for(int i=0;i<name1.length;i++) {
+				System.out.print("What is your name?");
+				name1[i] = in.next();
+				System.out.println("Hi and welcome to our shop  " + name1[i]);
+			}
 		}
+		else if(customers == 1) {
+			System.out.println("What is your name?");	
+			name = in.next();
+			System.out.println("Hi and welcome to our shop  " + name);
+			System.out.print("NRIC: ");
+			int nric = in.nextInt();
+			System.out.print("Gender: ");
+			String gender = in.next();
+			System.out.print("Age: ");
+			int age = in.nextInt();
+			System.out.print("Birthday: ");
+			String birthday = in.next();
+			System.out.print("Home Address: ");
+			String homeaddress = in.next();
+		}
+	}
 		
-		public static void printitems() {	
+		public static void printItems() {	
 		System.out.println(" ");
 		int i=1, line4=0;
 		while (i <50) {
@@ -728,70 +768,68 @@ public class AssignmentGroup2 {
 		}
 		
 		public static void printcalculate() { 
-		
-		Scanner in = new Scanner(System.in);
-			 
-		int first=0, sec=0, third=0, fourth=0, fifth=0;
-		int quantity1= 0, quantity2=0, quantity3=0, quantity4=0, quantity5=0;
-		int item1=0,item2=0,item3=0,item4=0,item5=0;
-		
-		String treatment[] = {"Keratin","Scalp","Hot Oil","Moisture","Toning"};
-		int price [] = {50,60,80,60,50};
-		
-		System.out.println(treatment[0]);
-		System.out.println();
-		System.out.print("Enter quantity product:");
-		quantity1=in.nextInt();
-		
-		item1 = (price[0] *quantity1);
-		System.out.println(treatment[0] + " RM " + item1);
+			Scanner in = new Scanner(System.in);
+				 
+			int first=0, sec=0, third=0, fourth=0, fifth=0;
+			int quantity1= 0, quantity2=0, quantity3=0, quantity4=0, quantity5=0;
+			int item1=0,item2=0,item3=0,item4=0,item5=0;
 			
-		
-		//////////////////////////////////////////////////////////////////////////////////////
-		System.out.println();
-		System.out.println(treatment[1]);
-		System.out.println();
-		
-		System.out.print("Enter quantity product:");
-		quantity2=in.nextInt();
-		item2 = (price[1]*quantity2);
-		System.out.println(treatment[1] + " RM " + item2);
-		
-		/////////////////////////////////////////////////////////////////////////////////////
-		System.out.println();
-		System.out.println(treatment[2]);
-		System.out.println();
-		
-		
-		System.out.print("Enter quantity product:");
-		 quantity3=in.nextInt();
-		item3 = (price[2]*quantity3);
-		System.out.println(treatment[2] + " RM " + item3);
-		///////////////
-		System.out.println();
-		System.out.println(treatment[3]);
-		System.out.println();
-		
-		System.out.print("Enter quantity product:");
-		quantity4=in.nextInt();
-		item4 = (price[3]*quantity4);
-		System.out.println(treatment[3] + " RM " + item4);
-		//////////////////////////////////////////////////////////////////////////////////
-		System.out.println();
-		System.out.println(treatment[4]);
-		System.out.println();
-		
-		System.out.print("Enter quantity product:");
-		quantity5=in.nextInt();
-		item5 = (price[4]*quantity5);
-		System.out.println(treatment[4] + " RM " + item5);
-		///////////////////////////////////////////////////////////////////////////////
-			System.out.println(" ");
-		
-		System.out.println();
-		double total = (item1+item2+item3+item4+item5);
-		
-		System.out.println("Total price : RM"+ total);
+			String treatment[] = {"Keratin","Scalp","Hot Oil","Moisture","Toning"};
+			int price [] = {50,60,80,60,50};
+			
+			System.out.println(treatment[0]);
+			System.out.println();
+			System.out.print("Enter quantity product:");
+			quantity1=in.nextInt();
+			
+			item1 = (price[0] *quantity1);
+			System.out.println(treatment[0] + " RM " + item1);	
+			
+			//////////////////////////////////////////////////////////////////////////////////////
+			System.out.println();
+			System.out.println(treatment[1]);
+			System.out.println();
+			
+			System.out.print("Enter quantity product:");
+			quantity2=in.nextInt();
+			item2 = (price[1]*quantity2);
+			System.out.println(treatment[1] + " RM " + item2);
+			
+			/////////////////////////////////////////////////////////////////////////////////////
+			System.out.println();
+			System.out.println(treatment[2]);
+			System.out.println();
+			
+			System.out.print("Enter quantity product:");
+			 quantity3=in.nextInt();
+			item3 = (price[2]*quantity3);
+			System.out.println(treatment[2] + " RM " + item3);
+			///////////////
+			System.out.println();
+			System.out.println(treatment[3]);
+			System.out.println();
+			
+			System.out.print("Enter quantity product:");
+			quantity4=in.nextInt();
+			item4 = (price[3]*quantity4);
+			System.out.println(treatment[3] + " RM " + item4);
+			//////////////////////////////////////////////////////////////////////////////////
+			System.out.println();
+			System.out.println(treatment[4]);
+			System.out.println();
+			
+			System.out.print("Enter quantity product:");
+			quantity5=in.nextInt();
+			item5 = (price[4]*quantity5);
+			System.out.println(treatment[4] + " RM " + item5);
+			///////////////////////////////////////////////////////////////////////////////
+				System.out.println(" ");
+			
+			System.out.println();
+			double total = (item1+item2+item3+item4+item5);
+			
+			System.out.println("Total price : RM"+ total);
 		}
-	}//afiza
+}//afiza
+		
 
